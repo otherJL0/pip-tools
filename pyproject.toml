@@ -62,7 +62,7 @@ zip-safe = false
 [tool.setuptools.dynamic]
 
 [tool.setuptools.packages.find]
-exclude = ["tests"]
+include = ["piptools"]
 
 [tool.setuptools.package-data]
 pip_tools = ["py.typed"]
