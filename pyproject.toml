@@ -2,4 +2,69 @@
 requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "pip-tools"
+license = { file = "LICENSE" }
+authors = [{ name = "Vincent Driessen", email = "me@nvie.com" }]
+description = "pip-tools keeps your pinned dependencies fresh."
+readme = "README.rst"
+dynamic = ["version"]
+requires-python = ">=3.7"
+dependencies = [
+    # direct dependencies
+    "build",
+    "click >= 7",
+    "pip >= 22.2",
+    # indirect dependencies
+    "setuptools", # typically needed when pip-tools invokes setup.py
+    "wheel",      # pip plugin needed by pip-tools
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: System :: Systems Administration",
+    "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+testing = [
+    "pytest",
+    "pytest-rerunfailures",
+    "pytest-xdist",
+]
+coverage = ["pytest-cov"]
+
+[project.urls]
+Source = "https://github.com/jazzband/pip-tools/"
+Documentation = "https://pip-tools.rtfd.io/"
+
+
+[project.scripts]
+pip-compile = "piptools.scripts.compile:cli"
+pip-sync = "piptools.scripts.sync:cli"
+
+[tool.setuptools]
+zip-safe = false
+
+[tool.setuptools.dynamic]
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+
+[tool.setuptools.package-data]
+piptools = ["py.typed"]
+
 [tool.setuptools_scm]
